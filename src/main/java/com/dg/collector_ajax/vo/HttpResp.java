@@ -2,32 +2,23 @@ package com.dg.collector_ajax.vo;
 
 import com.dg.collector_ajax.vo.Constant;
 
-public class HttpResp {
+public class HttpResp<T> {
     private Integer ret;
     private String msg;
-    private Object data;
+    private T data;
 
-    public HttpResp(Integer ret) {
-        this.ret = ret;
-    }
-
-    public HttpResp(Integer ret, String msg) {
-        this.ret = ret;
-        this.msg = msg;
-    }
-
-    public HttpResp(Integer ret, Object data) {
-        this.ret = ret;
-        this.data = data;
+    public HttpResp(RespCode rp) {
+        this.ret = rp.ret;
+        this.msg = rp.msg;
     }
 
     public static HttpResp buildSucc() {
-        return new HttpResp(Constant.RESP_SUCC_RET);
+        return new HttpResp(RespCode.SUCCESS);
     }
 
-    public static HttpResp buildSucc(Object data) {
-        return new HttpResp(Constant.RESP_SUCC_RET, data);
-    }
+//    public static HttpResp<T> buildSucc(T data) {
+//        return new HttpResp(Constant.RESP_SUCC_RET, data);
+//    }
 
     public String getMsg() {
         return msg;
@@ -45,11 +36,11 @@ public class HttpResp {
         this.ret = ret;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
